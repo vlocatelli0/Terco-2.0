@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Terço Online interativo com seleção de mistérios e rosário funcional conta por conta." />
+  <title>Terço Online Interativo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <p class="eyebrow">Guia católico interativo</p>
+    <h1>Terço Online</h1>
+    <p class="subtitle">Reze conta por conta, com mistérios e orações em cada etapa.</p>
+  </header>
+
+  <main class="app-main">
+    <section id="screen-select" class="screen screen--active card" aria-labelledby="select-title">
+      <h2 id="select-title">Escolha quais mistérios você vai rezar</h2>
+      <p class="hint">Após escolher, você será direcionado para o terço completo e funcional.</p>
+      <div class="mystery-grid">
+        <button class="mystery-btn" data-mystery="gozosos" type="button"><strong>Gozosos</strong><small>Segundas e Sábados</small></button>
+        <button class="mystery-btn" data-mystery="dolorosos" type="button"><strong>Dolorosos</strong><small>Terças e Sextas</small></button>
+        <button class="mystery-btn" data-mystery="gloriosos" type="button"><strong>Gloriosos</strong><small>Quartas e Domingos</small></button>
+        <button class="mystery-btn" data-mystery="luminosos" type="button"><strong>Luminosos</strong><small>Quintas</small></button>
+      </div>
+    </section>
+
+    <section id="screen-rosary" class="screen card" aria-labelledby="rosary-title" hidden>
+      <div class="rosary-topbar">
+        <button id="back-btn" class="back-btn" type="button" aria-label="Voltar para seleção de mistérios">← Voltar</button>
+        <p id="chosen-mystery" class="chosen-mystery">Mistérios Gozosos</p>
+      </div>
+
+      <h2 id="rosary-title">Toque em cada conta do terço</h2>
+      <p class="hint">Toque em cada conta para seguir as orações do terço.</p>
+
+      <article class="rosary-layout" aria-label="Terço católico interativo">
+        <svg class="rosary-svg" viewBox="0 0 500 1080" aria-hidden="true" focusable="false">
+          <defs>
+            <linearGradient id="chainGradient" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0%" stop-color="#c79d5b" />
+              <stop offset="100%" stop-color="#f0cc8c" />
+            </linearGradient>
+          </defs>
+
+          <path id="loop-path" d="M250 705 C145 645, 62 515, 62 360 C62 230, 148 156, 216 176 C250 94, 368 70, 434 156 C502 248, 480 410, 410 520 C360 598, 292 658, 250 705 Z" fill="none" stroke="url(#chainGradient)" stroke-width="4.2" />
+
+          <!-- Haste inferior contínua (medalha até a cruz) para interligar corretamente as contas iniciais -->
+          <path id="stem-path" d="M250 1032 L250 705" fill="none" stroke="url(#chainGradient)" stroke-width="4.8" stroke-linecap="round" />
+        </svg>
+
+        <div id="bead-layer" class="bead-layer" aria-live="polite"></div>
+        <div class="cross-line" aria-hidden="true"></div>
+        <button id="cross-button" class="cross-btn" type="button" aria-label="Cruz do terço"></button>
+      </article>
+
+      <article class="guide-panel" aria-live="polite" aria-atomic="true">
+        <p id="guide-step" class="guide-step">Etapa 1</p>
+        <h3 id="guide-title" class="guide-title">Sinal da Cruz</h3>
+        <p id="guide-mystery" class="guide-mystery">Mistério atual: Introdução</p>
+        <p id="guide-prayer" class="guide-prayer"></p>
+      </article>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
